@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏕️ Guys Gang Camping 2026</title>
+<style>
+:root{--green:#2d6a4f;--green-light:#52b788;--orange:#e76f51;--bg:#fefae0;--card:#ffffff;--text:#264653;--muted:#6b7280;--border:#d4d4d4;--shadow:0 2px 8px rgba(0,0,0,.08)}
+[data-theme=dark]{--bg:#1a1a2e;--card:#16213e;--text:#e2e8f0;--muted:#94a3b8;--border:#334155;--shadow:0 2px 8px rgba(0,0,0,.4)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;min-height:100vh}
+header{background:var(--green);color:#fff;padding:16px;position:sticky;top:0;z-index:100}
+.hdr{max-width:600px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+header h1{font-size:1.1rem;font-weight:700}
+header p{font-size:.75rem;opacity:.85;margin-top:2px}
+.dtbtn{background:rgba(255,255,255,.2);border:none;border-radius:20px;padding:6px 12px;color:#fff;cursor:pointer;font-size:.85rem;flex-shrink:0}
+.tabs{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:99;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs-inner{display:flex;max-width:600px;margin:0 auto;min-width:max-content}
+.tab{padding:12px 14px;border:none;background:none;color:var(--muted);cursor:pointer;font-size:.8rem;font-weight:500;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:var(--green);border-bottom-color:var(--green)}
+.content{max-width:600px;margin:0 auto;padding:16px}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.ct{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:10px}
+.row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.88rem}
+.row:last-child{border-bottom:none}
+.lbl{color:var(--muted);min-width:80px;font-size:.78rem;flex-shrink:0}
+.val{font-weight:500}
+/* timeline */
+.titem{display:flex;gap:12px;margin-bottom:0;position:relative}
+.tleft{display:flex;flex-direction:column;align-items:center;min-width:52px}
+.tlbl{font-size:.72rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--green);margin:4px 0;flex-shrink:0}
+.dot.o{background:var(--orange)}.dot.b{background:#4a90d9}
+.tline{width:2px;flex:1;background:var(--border);min-height:20px}
+.tright{padding-bottom:16px;flex:1}
+.ttitle{font-size:.88rem;font-weight:600;margin-bottom:2px}
+.tdesc{font-size:.78rem;color:var(--muted)}
+.daydiv{text-align:center;font-size:.72rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;padding:8px 0 4px}
+/* checklist */
+.cat{font-size:.78rem;font-weight:700;color:var(--green);margin:12px 0 6px}
+.ci{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.ci:last-child{border-bottom:none}
+.ci input[type=checkbox]{width:18px;height:18px;accent-color:var(--green);cursor:pointer;flex-shrink:0}
+.ci label{font-size:.86rem;cursor:pointer;transition:opacity .2s}
+.ci.checked label{text-decoration:line-through;opacity:.4}
+.pb-wrap{background:var(--border);border-radius:4px;height:6px;margin:10px 0 4px;overflow:hidden}
+.pb{height:100%;background:var(--green);border-radius:4px;transition:width .3s}
+.plbl{font-size:.75rem;color:var(--muted)}
+/* inventory */
+.inv{display:grid;grid-template-columns:1fr 44px 44px 72px;gap:6px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.83rem}
+.inv:last-child{border-bottom:none}
+.inv.hdr{font-size:.68rem;font-weight:700;color:var(--muted);text-transform:uppercase}
+.badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:.68rem;font-weight:700}
+.ok{background:#dcfce7;color:#166534}.gap{background:#fef9c3;color:#854d0e}.miss{background:#fee2e2;color:#991b1b}
+[data-theme=dark] .ok{background:#14532d;color:#86efac}[data-theme=dark] .gap{background:#713f12;color:#fde047}[data-theme=dark] .miss{background:#7f1d1d;color:#fca5a5}
+/* tasks */
+.nf{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.nbtn{padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-size:.78rem;transition:all .2s}
+.nbtn.active{background:var(--green);color:#fff;border-color:var(--green)}
+.pc{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:14px;margin-bottom:10px}
+.pname{font-weight:700;font-size:.93rem;margin-bottom:8px}
+.ti{font-size:.83rem;padding:4px 0;color:var(--muted);display:flex;align-items:center;gap:6px}
+.ti::before{content:"→";color:var(--orange);font-weight:700}
+.alert{background:#fff7ed;border-left:3px solid var(--orange);padding:10px 12px;border-radius:0 8px 8px 0;font-size:.8rem;margin-bottom:10px;color:#7c2d12}
+[data-theme=dark] .alert{background:#431407;color:#fdba74}
+footer{text-align:center;font-size:.72rem;color:var(--muted);padding:24px 16px}
+.rbtn{background:none;border:1px solid var(--border);color:var(--muted);padding:8px 20px;border-radius:20px;cursor:pointer;font-size:.78rem;margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+<div class="hdr">
+<div><h1>🏕️ Guys Gang Great Escape</h1><p>13–14 June 2026 · Helsingborg area</p></div>
+<button class="dtbtn" onclick="toggleDark()">🌙 Dark</button>
+</div>
+</header>
+
+<nav class="tabs">
+<div class="tabs-inner">
+<button class="tab active" onclick="showTab('overview',this)">🗺️ Overview</button>
+<button class="tab" onclick="showTab('schedule',this)">⏰ Schedule</button>
+<button class="tab" onclick="showTab('checklist',this)">🎒 My Pack</button>
+<button class="tab" onclick="showTab('tasks',this)">📋 Tasks</button>
+<button class="tab" onclick="showTab('inventory',this)">📦 Inventory</button>
+</div>
+</nav>
+
+<main class="content">
+
+<!-- OVERVIEW -->
+<section id="tab-overview" class="panel active">
+<div class="card">
+<div class="ct">📍 Event Details</div>
+<div class="row"><span class="lbl">📅 Date</span><span class="val">Saturday 13 – Sunday 14 June 2026</span></div>
+<div class="row"><span class="lbl">📍 Location</span><span class="val">[LOCATION TBD]</span></div>
+<div class="row"><span class="lbl">🚗 Depart</span><span class="val">10:00 AM from Helsingborg</span></div>
+<div class="row"><span class="lbl">🏕️ Arrive</span><span class="val">~11:00 AM at campsite</span></div>
+<div class="row"><span class="lbl">🏠 Return</span><span class="val">Sunday ~11:00 AM</span></div>
+<div class="row"><span class="lbl">👥 Group</span><span class="val">12 people</span></div>
+<div class="row"><span class="lbl">📞 Organiser</span><span class="val">[NAME & NUMBER]</span></div>
+</div>
+<div class="card">
+<div class="ct">🗓️ Critical Deadlines</div>
+<div class="row"><span class="lbl">Thu 11 Jun</span><span class="val">⚠️ Fill Google Form by 9 PM</span></div>
+<div class="row"><span class="lbl">Fri 12 Jun</span><span class="val">🛒 Buy any missing gear</span></div>
+<div class="row"><span class="lbl">Fri 12 Jun</span><span class="val">🎒 Pack your bag</span></div>
+<div class="row"><span class="lbl">Sat 13 Jun</span><span class="val">🚗 Ready at 10:00 AM — no late starts!</span></div>
+</div>
+<div class="card">
+<div class="ct">🍽️ Meal Plan</div>
+<div class="row"><span class="lbl">🍛 Lunch</span><span class="val">Sat 2:00 PM — Indian feast (biryani + curry)</span></div>
+<div class="row"><span class="lbl">🥩 Dinner</span><span class="val">Sat 7:30 PM — Barbecue</span></div>
+<div class="row"><span class="lbl">🍳 Breakfast</span><span class="val">Sun 9:00 AM — Full English + tea</span></div>
+</div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="tab-schedule" class="panel">
+<div class="card">
+<div class="daydiv">☀️ Saturday 13 June</div>
+<div class="titem"><div class="tleft"><span class="tlbl">08:00</span><div class="dot"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">📱 Final reminder ping</div><div class="tdesc">WhatsApp: "We leave in 2 hours. No excuses."</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">10:00</span><div class="dot"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🚗 Convoy departs</div><div class="tdesc">Meet point: [TBD]. Carpool confirmed in chat.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">11:00</span><div class="dot"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🏕️ Arrive at campsite</div><div class="tdesc">Tents up, kitchen area set up, firewood scouted.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">12:00</span><div class="dot o"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🍛 Lunch prep begins</div><div class="tdesc">Indian feast: biryani, curry, raita. All hands on deck!</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">14:00</span><div class="dot o"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🍽️ LUNCH SERVED</div><div class="tdesc">Eat like kings. Naan, chutney, the works.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">15:30</span><div class="dot b"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">⚽ Afternoon free time</div><div class="tdesc">Football, frisbee, swimming, hammocks, cards.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">18:00</span><div class="dot o"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🔥 BBQ prep begins</div><div class="tdesc">Fire lit, grill set up, marinated meats on deck.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">19:30</span><div class="dot o"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🥩 DINNER SERVED</div><div class="tdesc">Burgers, sausages, halloumi, corn. Fire + sunset.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">21:00</span><div class="dot"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🌙 Evening vibes</div><div class="tdesc">Campfire, music, stories, games, stargazing.</div></div></div>
+<div class="daydiv">🌄 Sunday 14 June</div>
+<div class="titem"><div class="tleft"><span class="tlbl">07:30</span><div class="dot"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">☕ Rise & shine</div><div class="tdesc">Morning coffee and fresh air.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">08:00</span><div class="dot o"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🍳 Breakfast prep</div><div class="tdesc">Full English: bacon, eggs, sausages, beans, toast, tea.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">09:00</span><div class="dot o"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🥓 BREAKFAST SERVED</div><div class="tdesc">The most important meal of the camping trip.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">10:00</span><div class="dot"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">🧹 Pack up & clean</div><div class="tdesc">Leave no trace. Assign roles in the morning.</div></div></div>
+<div class="titem"><div class="tleft"><span class="tlbl">11:00</span><div class="dot"></div><div class="tline"></div></div><div class="tright"><div class="ttitle">👋 Convoy home</div><div class="tdesc">Until next time, lads. 🏕️</div></div></div>
+</div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="tab-checklist" class="panel">
+<div class="card">
+<div class="ct">📦 Packing Progress</div>
+<div class="pb-wrap"><div class="pb" id="pb" style="width:0%"></div></div>
+<div class="plbl" id="plbl">0 of 0 items packed</div>
+</div>
+<div class="card">
+<div class="ct">🎒 Personal Packing List</div>
+<p style="font-size:.75rem;color:var(--muted);margin-bottom:4px">Tap to check off. Saves automatically.</p>
+<div class="cat">🏠 Shelter & Sleep</div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Tent (poles and pegs)</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Sleeping bag (rated 10–15°C)</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Sleeping mat / foam pad</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Pillow (travel or inflatable)</label></div>
+<div class="cat">👕 Clothing</div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Warm layer / fleece</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Waterproof jacket</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>T-shirts × 2</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Long trousers (evening)</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Sturdy footwear / boots</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Flip-flops / camp sandals</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Socks × 3 pairs</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Underwear × 2</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Beanie or cap</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Swimwear</label></div>
+<div class="cat">🧴 Toiletries</div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Toothbrush & toothpaste</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Biodegradable soap</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Deodorant</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Sunscreen (SPF 30+)</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Insect repellent</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Toilet paper (in ziplock bag)</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Quick-dry towel</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Wet wipes</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Personal medications</label></div>
+<div class="cat">🦺 Personal Safety</div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Head torch + spare batteries</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Phone + power bank</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Water bottle (1L+)</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Personal first aid basics</label></div>
+<div class="ci" onclick="tog(this)"><input type="checkbox"><label>Pocket knife / multi-tool</label></div>
+</div>
+<div style="text-align:center">
+<button class="rbtn" onclick="resetCL()">↺ Reset checklist</button>
+</div>
+</section>
+
+<!-- TASKS -->
+<section id="tab-tasks" class="panel">
+<div class="alert">⚠️ Update names and tasks after form responses are collected (Friday 12 June).</div>
+<div style="font-size:.78rem;color:var(--muted);margin-bottom:8px">Filter by name:</div>
+<div class="nf" id="nf">
+<button class="nbtn active" onclick="fp('all',this)">All 12</button>
+<button class="nbtn" onclick="fp('p1',this)">Person 1</button>
+<button class="nbtn" onclick="fp('p2',this)">Person 2</button>
+<button class="nbtn" onclick="fp('p3',this)">Person 3</button>
+<button class="nbtn" onclick="fp('p4',this)">Person 4</button>
+<button class="nbtn" onclick="fp('p5',this)">Person 5</button>
+<button class="nbtn" onclick="fp('p6',this)">Person 6</button>
+<button class="nbtn" onclick="fp('p7',this)">Person 7</button>
+<button class="nbtn" onclick="fp('p8',this)">Person 8</button>
+<button class="nbtn" onclick="fp('p9',this)">Person 9</button>
+<button class="nbtn" onclick="fp('p10',this)">Person 10</button>
+<button class="nbtn" onclick="fp('p11',this)">Person 11</button>
+<button class="nbtn" onclick="fp('p12',this)">Person 12</button>
+</div>
+<!-- Edit names below + task items -->
+<div class="pc" data-p="p1"><div class="pname">🧑 Person 1</div><div class="ti">Bring large pot (10L+)</div><div class="ti">Bring gas stove + 2 canisters</div><div class="ti">Drive — seats for 3 passengers</div></div>
+<div class="pc" data-p="p2"><div class="pname">🧑 Person 2</div><div class="ti">Bring BBQ grill + charcoal × 2</div><div class="ti">Bring camp chairs × 2</div><div class="ti">Needs a ride</div></div>
+<div class="pc" data-p="p3"><div class="pname">🧑 Person 3</div><div class="ti">Bring frying pan + cutting board</div><div class="ti">Bring bluetooth speaker</div><div class="ti">Drive — seats for 2 passengers</div></div>
+<div class="pc" data-p="p4"><div class="pname">🧑 Person 4</div><div class="ti">Buy bag of ice on the way</div><div class="ti">Bring folding table × 1</div></div>
+<div class="pc" data-p="p5"><div class="pname">🧑 Person 5</div><div class="ti">Bring spare sleeping bag</div><div class="ti">Bring hammock × 1</div></div>
+<div class="pc" data-p="p6"><div class="pname">🧑 Person 6</div><div class="ti">Bring string lights × 1</div><div class="ti">Bring camp kettle</div></div>
+<div class="pc" data-p="p7"><div class="pname">🧑 Person 7</div><div class="ti">Bring football</div><div class="ti">Bring card games (UNO etc.)</div></div>
+<div class="pc" data-p="p8"><div class="pname">🧑 Person 8</div><div class="ti">Bring frisbee</div><div class="ti">Bring large power bank</div></div>
+<div class="pc" data-p="p9"><div class="pname">🧑 Person 9</div><div class="ti">Pick up marshmallows + skewers</div><div class="ti">Bring camp lantern</div></div>
+<div class="pc" data-p="p10"><div class="pname">🧑 Person 10</div><div class="ti">Bring spare sleeping mat</div><div class="ti">Bring tin foil + bin bags</div></div>
+<div class="pc" data-p="p11"><div class="pname">🧑 Person 11</div><div class="ti">Bring washing-up basin + sponges</div><div class="ti">Bring biodegradable washing-up liquid</div></div>
+<div class="pc" data-p="p12"><div class="pname">🧑 Person 12</div><div class="ti">Bring group first aid kit</div><div class="ti">Bring mallet + duct tape</div></div>
+</section>
+
+<!-- INVENTORY -->
+<section id="tab-inventory" class="panel">
+<div class="alert">📋 Fill in "Have" column on Friday 12 June after form responses are collected.</div>
+<div class="card">
+<div class="ct">🏠 Shelter</div>
+<div class="inv hdr"><span>Item</span><span>Have</span><span>Need</span><span>Status</span></div>
+<div class="inv"><span>Tents</span><span>—</span><span>6</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Sleeping bags</span><span>—</span><span>12</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Sleeping mats</span><span>—</span><span>12</span><span><span class="badge gap">TBC</span></span></div>
+</div>
+<div class="card">
+<div class="ct">🍳 Cooking Equipment</div>
+<div class="inv hdr"><span>Item</span><span>Have</span><span>Need</span><span>Status</span></div>
+<div class="inv"><span>Large pots</span><span>—</span><span>2</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Frying pans</span><span>—</span><span>2</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Gas stoves</span><span>—</span><span>2</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>BBQ grill</span><span>—</span><span>1</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Charcoal bags</span><span>—</span><span>2</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Camp chairs</span><span>—</span><span>12</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Folding tables</span><span>—</span><span>2</span><span><span class="badge gap">TBC</span></span></div>
+</div>
+<div class="card">
+<div class="ct">🚗 Transport</div>
+<div class="inv hdr"><span>Metric</span><span>Have</span><span>Need</span><span>Status</span></div>
+<div class="inv"><span>Drivers</span><span>—</span><span>3</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Seats</span><span>—</span><span>9+</span><span><span class="badge gap">TBC</span></span></div>
+</div>
+<div class="card">
+<div class="ct">🎮 Entertainment</div>
+<div class="inv hdr"><span>Item</span><span>Have</span><span>Need</span><span>Status</span></div>
+<div class="inv"><span>Speaker</span><span>—</span><span>1</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Football</span><span>—</span><span>1</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>String lights</span><span>—</span><span>2</span><span><span class="badge gap">TBC</span></span></div>
+<div class="inv"><span>Hammocks</span><span>—</span><span>2</span><span><span class="badge gap">TBC</span></span></div>
+</div>
+</section>
+
+</main>
+<footer>🏕️ Guys Gang Great Escape · 13–14 June 2026 · Made with ❤️ and a campfire</footer>
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleDark(){
+  const d=document.body.dataset.theme==='dark';
+  document.body.dataset.theme=d?'':'dark';
+  document.querySelector('.dtbtn').textContent=d?'🌙 Dark':'☀️ Light';
+  localStorage.setItem('c-dark',d?'':'dark');
+}
+const sd=localStorage.getItem('c-dark');
+if(sd==='dark'){document.body.dataset.theme='dark';document.querySelector('.dtbtn').textContent='☀️ Light';}
+function tog(el){
+  const cb=el.querySelector('input');cb.checked=!cb.checked;
+  el.classList.toggle('checked',cb.checked);save();upd();
+}
+function save(){
+  const s={};document.querySelectorAll('.ci').forEach((el,i)=>s[i]=el.querySelector('input').checked);
+  localStorage.setItem('c-cl',JSON.stringify(s));
+}
+function load(){
+  const sv=localStorage.getItem('c-cl');if(!sv)return;
+  const s=JSON.parse(sv);
+  document.querySelectorAll('.ci').forEach((el,i)=>{if(s[i]){el.querySelector('input').checked=true;el.classList.add('checked');}});
+  upd();
+}
+function upd(){
+  const all=document.querySelectorAll('.ci').length;
+  const done=document.querySelectorAll('.ci.checked').length;
+  const pct=all?Math.round(done/all*100):0;
+  document.getElementById('pb').style.width=pct+'%';
+  document.getElementById('plbl').textContent=done+' of '+all+' items packed ('+pct+'%)';
+}
+function resetCL(){
+  document.querySelectorAll('.ci').forEach(el=>{el.querySelector('input').checked=false;el.classList.remove('checked');});
+  localStorage.removeItem('c-cl');upd();
+}
+function fp(id,btn){
+  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.pc').forEach(c=>c.style.display=(id==='all'||c.dataset.p===id)?'block':'none');
+}
+load();
+</script>
+</body>
+</html>
